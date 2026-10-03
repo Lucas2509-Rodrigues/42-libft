@@ -1,0 +1,17 @@
+# Object files and library
+*.o
+*.a
+
+# Binaries
+a.out
+*.out
+demo
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test leftovers
+*.dSYM/
