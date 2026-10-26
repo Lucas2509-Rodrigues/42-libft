@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   striter.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/14 10:43:49 by lucas             #+#    #+#             */
-/*   Updated: 2026/09/15 11:26:19 by lucas            ###   ########.fr       */
+/*   Created: 2026/10/23 14:39:03 by lucas             #+#    #+#             */
+/*   Updated: 2026/10/23 14:47:31 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striter(char *s, void (*f)(char *))
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	i;
 
-	if (!s)
-		return ;
 	i = 0;
-	if (f)
+	if (!dstsize)
+		return (ft_strlen(src));
+	while (src[i] && i < dstsize - 1)
 	{
-		while (s[i] != '\0')
-		{
-			f(&s[i]);
-			i++;
-		}
+		dst[i] = src[i];
+		i++;
 	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strsplit.c                                         :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 12:21:45 by lucas             #+#    #+#             */
-/*   Updated: 2026/09/24 09:46:41 by lucas            ###   ########.fr       */
+/*   Updated: 2026/10/23 14:25:49 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	**free_all(char **str, int j)
 	return (NULL);
 }
 
-char	**ft_strsplit(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**str;
 	int		i;
@@ -79,7 +79,7 @@ char	**ft_strsplit(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	str = (char **)ft_memalloc(sizeof(char *) * (count_words(s, c) + 1));
+	str = (char **)ft_calloc(count_words(s, c) + 1, sizeof(char *));
 	if (!str)
 		return (NULL);
 	i = 0;

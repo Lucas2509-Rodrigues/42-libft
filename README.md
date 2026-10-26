@@ -1,85 +1,69 @@
-<h1 align="center">libft</h1>
+_This project has been created as part of the 42 curriculum by lurodri2._
 
-<p align="center">
-  <em>My first C library, built from scratch as part of the <a href="https://42.fr">42</a> common core.</em>
-</p>
+# libft
 
-<p align="center">
-  <img alt="Language" src="https://img.shields.io/badge/language-C-00599C?logo=c&logoColor=white">
-  <img alt="Norminette" src="https://img.shields.io/badge/norminette-passing-brightgreen">
-  <img alt="Functions" src="https://img.shields.io/badge/functions-52-informational">
-  <img alt="School" src="https://img.shields.io/badge/school-42-000000">
-</p>
+## Description
 
----
+`libft` is my first C library, written from scratch for the 42 common core. The goal is
+to re-implement a set of standard `libc` functions, add some extra utility functions, and
+package everything in a static library (`libft.a`) that can be reused in later projects.
 
-## About
-
-`libft` is a static C library that re-implements a set of standard `libc` functions
-and adds a collection of useful string, memory and output helpers. It is the first
-project of the 42 curriculum and is reused as a foundation in many later projects.
-
-The goal is to understand how these functions really work: pointer arithmetic, memory
+The project teaches how these functions really work: pointer arithmetic, memory
 management, edge cases, and how to build and ship a library with a `Makefile`.
 
-**Constraints of the project**
+### Library overview
 
-- Only `malloc`, `free` and `write` are allowed from the system.
+The library has 43 functions, each in its own `ft_*.c` file, with all prototypes in `libft.h`.
+
+**Part 1: libc functions** (re-implemented with the same behaviour as the originals)
+
+| Category         | Functions                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| Character checks | `ft_isalpha` `ft_isdigit` `ft_isalnum` `ft_isascii` `ft_isprint`                                     |
+| Case conversion  | `ft_toupper` `ft_tolower`                                                                            |
+| Memory           | `ft_memset` `ft_bzero` `ft_memcpy` `ft_memmove` `ft_memchr` `ft_memcmp` `ft_calloc`                  |
+| Strings          | `ft_strlen` `ft_strlcpy` `ft_strlcat` `ft_strchr` `ft_strrchr` `ft_strncmp` `ft_strnstr` `ft_strdup` |
+| Conversion       | `ft_atoi`                                                                                            |
+
+**Part 2: additional functions** (not in libc, or in a different form)
+
+| Function                                                         | What it does                                                                            |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `ft_substr`                                                      | Returns a new string extracted from `s`, starting at `start`, at most `len` characters. |
+| `ft_strjoin`                                                     | Returns a new string made of `s1` followed by `s2`.                                     |
+| `ft_strtrim`                                                     | Returns a copy of `s1` without the characters of `set` at the beginning and at the end. |
+| `ft_split`                                                       | Splits a string by a delimiter character into a `NULL`-terminated array of new strings. |
+| `ft_itoa`                                                        | Converts an integer to a newly allocated string.                                        |
+| `ft_strmapi`                                                     | Applies a function to every character (with its index) and returns the new string.      |
+| `ft_striteri`                                                    | Applies a function to every character (with its index) of a string, in place.           |
+| `ft_putchar_fd`, `ft_putstr_fd`, `ft_putendl_fd`, `ft_putnbr_fd` | Write a char, a string, a string and a newline, or an integer to a file descriptor.     |
+
+**Part 3: linked lists** (using `t_list`, with `content` and `next`)
+
+`ft_lstnew` `ft_lstadd_front` `ft_lstadd_back` `ft_lstsize` `ft_lstlast`
+`ft_lstdelone` `ft_lstclear` `ft_lstiter` `ft_lstmap`
+
+**Project rules**
+
+- Only `malloc`, `free` and `write` are used from the system.
 - No global variables; helper functions are `static`.
-- Code follows the [42 Norm](https://github.com/42School/norminette) (checked with `norminette`).
-- No crashes, no leaks: every allocation is freed by the caller using the provided helpers.
-- Compiled with `-Wall -Wextra -Werror`.
+- Compiled with `-Wall -Wextra -Werror` and checked with `norminette`.
+- No relink: `make` does nothing when nothing changed.
 
-## Status
+## Instructions
 
-| Part | State |
-| --- | --- |
-| Part 1: libc functions | Done (28 functions) |
-| Part 2: additional functions | Done (24 functions) |
-| Bonus (linked lists) | Not implemented yet |
-
-## Functions
-
-### Part 1: libc re-implementations
-
-| Category | Functions |
-| --- | --- |
-| Memory | `ft_memset` `ft_bzero` `ft_memcpy` `ft_memccpy` `ft_memmove` `ft_memchr` `ft_memcmp` |
-| Strings | `ft_strlen` `ft_strdup` `ft_strcpy` `ft_strncpy` `ft_strcat` `ft_strncat` `ft_strlcat` |
-| Searching | `ft_strchr` `ft_strrchr` `ft_strstr` `ft_strnstr` |
-| Comparing | `ft_strcmp` `ft_strncmp` |
-| Conversion | `ft_atoi` `ft_toupper` `ft_tolower` |
-| Character checks | `ft_isalpha` `ft_isdigit` `ft_isalnum` `ft_isascii` `ft_isprint` |
-
-### Part 2: additional functions
-
-| Category | Functions |
-| --- | --- |
-| Memory | `ft_memalloc` `ft_memdel` |
-| String lifecycle | `ft_strnew` `ft_strdel` `ft_strclr` |
-| Iteration and mapping | `ft_striter` `ft_striteri` `ft_strmap` `ft_strmapi` |
-| Comparison | `ft_strequ` `ft_strnequ` |
-| Building strings | `ft_strsub` `ft_strjoin` `ft_strtrim` `ft_strsplit` `ft_itoa` |
-| Output | `ft_putchar` `ft_putstr` `ft_putendl` `ft_putnbr` |
-| Output to a file descriptor | `ft_putchar_fd` `ft_putstr_fd` `ft_putendl_fd` `ft_putnbr_fd` |
-
-The full list of prototypes is in [`libft.h`](libft.h).
-
-## Build
+### Build
 
 ```bash
 make          # builds libft.a
-make clean    # removes object files
-make fclean   # removes object files and libft.a
+make clean    # removes the object files
+make fclean   # removes the object files and libft.a
 make re       # rebuilds everything from scratch
 ```
 
-The `Makefile` only recompiles files that changed and does not relink when nothing
-changed.
+### Usage
 
-## Usage
-
-Include the header and link against the library:
+Include the header in your code and link against the library:
 
 ```c
 #include "libft.h"
@@ -89,48 +73,54 @@ int main(void)
     char    *str;
 
     str = ft_itoa(-42);
-    ft_putendl(str);        /* prints: -42 */
-    ft_strdel(&str);        /* frees and sets str to NULL */
+    ft_putendl_fd(str, 1);   /* prints: -42 */
+    free(str);
     return (0);
 }
 ```
 
 ```bash
-cc -Wall -Wextra -Werror main.c -L. -lft -o demo
-./demo
+cc -Wall -Wextra -Werror main.c -L. -lft -I. -o test
+./test
 ```
 
-## Project layout
-
-Following the subject, all sources, the header and the `Makefile` live at the root of the repository.
-
-```
-.
-├── libft.h        # prototypes
-├── Makefile       # builds libft.a
-├── author         # 42 login
-├── *.c            # one function per file (atoi.c, strsplit.c, ...)
-└── README.md
-```
-
-## How I tested it
+### How it was tested
 
 - `norminette` on every source file and on the header.
-- Builds cleanly with `-Wall -Wextra -Werror`.
-- Behaviour compared with the real `libc` for the standard functions, including edge cases
-  (`INT_MIN`, empty strings, `n = 0`, overlapping buffers in `ft_memmove`, `\0` handling).
-- Run under AddressSanitizer and UndefinedBehaviorSanitizer to catch invalid memory access
-  and undefined behaviour.
+- Clean build with `-Wall -Wextra -Werror`.
+- Behaviour compared with the real `libc` for the standard functions, including edge
+  cases (`INT_MIN`, empty strings, `n = 0`, overlapping buffers in `ft_memmove`, `NULL`
+  arguments, allocation overflow in `ft_calloc`).
+- Runs under AddressSanitizer, UndefinedBehaviorSanitizer and LeakSanitizer.
+- Simulated `malloc` failures in the functions that allocate (`ft_split`, `ft_lstmap`,
+  `ft_strjoin`, ...) to check that everything is cleaned up.
+- Hand-written tests for the list functions, printing the list and the node addresses
+  to verify the links.
 
-## What I learned
+## Resources
 
-- How memory really behaves in C: pointers, casts, `const` correctness and overlapping copies.
-- Writing defensive code: `NULL` checks and cleaning up when an allocation fails midway
-  (see `ft_strsplit`).
-- Structuring a multi-file project, writing a `Makefile` with proper dependencies, and
-  building a static library with `ar`.
-- Working within strict coding rules (the Norm) and peer review.
+- The libft subject (42 curriculum).
+- The `man` pages of the re-implemented functions (`man 3 strlcpy`, `man 3 calloc`, ...).
+- The 42 Norm and `norminette`.
+- Documentation on linked lists, pointers to pointers and dynamic memory in C.
 
-## Author
+### Use of AI
 
-**Lucas**, student at [42](https://42.fr).
+I used Claude as a tutor, not as a code generator. All the code in this repository was
+written by me. The AI was used for:
+
+- **Explaining concepts**: pointers and pointers to pointers (why `ft_lstadd_front`
+  receives a `t_list **`), `size_t` and unsigned wraparound, `void` versus `void *`,
+  the difference between copying a pointer and copying its content, use-after-free and
+  double free.
+- **Guiding my debugging**: reading compiler errors and sanitizer reports, and giving
+  hints and parallel examples instead of the solution, so I could fix my code myself.
+- **Reviewing my code**: pointing out edge cases and bugs in functions I had already
+  written (for example in `ft_strlcat`, `ft_split` and `ft_lstclear`).
+- **Testing**: running a large number of tests (comparison with `libc`, edge cases,
+  AddressSanitizer/UBSan/LeakSanitizer, simulated allocation failures) and teaching me
+  how to write my own tests, such as a `print_list` helper for the list functions.
+- **Checking the project against the subject**: Makefile rules, `libft.h` prototypes and
+  the list of required functions.
+
+Formatting for the Norm and all final decisions about the code were done by me.

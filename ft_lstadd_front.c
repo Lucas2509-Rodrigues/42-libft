@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strdel.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/12 11:25:38 by lucas             #+#    #+#             */
-/*   Updated: 2026/09/12 11:36:33 by lucas            ###   ########.fr       */
+/*   Created: 2026/10/25 17:00:51 by lucas             #+#    #+#             */
+/*   Updated: 2026/10/26 12:30:13 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strdel(char **as)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (as && *as)
-	{
-		free(*as);
-		*as = NULL;
-	}
+	if (!new || !lst)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

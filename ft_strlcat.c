@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcat.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 10:44:36 by marvin            #+#    #+#             */
-/*   Updated: 2026/09/08 10:44:36 by marvin           ###   ########.fr       */
+/*   Updated: 2026/10/23 21:19:35 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t n)
 	size_t	len_src;
 
 	i = 0;
+	len_dst = 0;
 	len_src = ft_strlen(src);
-	len_dst = ft_strlen(dst);
+	while (len_dst < n && dst[len_dst])
+		len_dst++;
 	if (n <= len_dst)
 	{
 		return (n + len_src);

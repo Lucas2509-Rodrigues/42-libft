@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtrim.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/21 10:38:19 by lucas             #+#    #+#             */
-/*   Updated: 2026/09/21 11:26:28 by lucas            ###   ########.fr       */
+/*   Created: 2026/10/23 13:38:06 by lucas             #+#    #+#             */
+/*   Updated: 2026/10/23 14:34:05 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+void	*ft_calloc(	size_t nmemb, size_t size)
 {
-	char			*str;
-	unsigned int	start;
-	unsigned int	end;
-	unsigned int	j;
+	char	*str;
 
-	if (!s)
+	if (size != 0 && (nmemb * size) / size != nmemb)
 		return (NULL);
-	str = (char *)malloc(ft_strlen(s) + 1);
+	str = malloc(nmemb * size);
 	if (!str)
 		return (NULL);
-	ft_bzero(str, ft_strlen(s) + 1);
-	start = 0;
-	j = 0;
-	end = ft_strlen(s);
-	while (s[start] && (s[start] == ' ' || s[start] == '\n'
-			|| s[start] == '\t'))
-		start++;
-	while (end > start && (s[end - 1] == ' '
-			|| s[end - 1] == '\n' || s[end - 1] == '\t'))
-		end--;
-	while (start < end)
-		str[j++] = s[start++];
+	ft_bzero(str, (size * nmemb));
 	return (str);
 }

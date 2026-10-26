@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putstr.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/22 11:46:09 by lucas             #+#    #+#             */
-/*   Updated: 2026/09/22 11:48:31 by lucas            ###   ########.fr       */
+/*   Created: 2026/09/21 10:13:01 by lucas             #+#    #+#             */
+/*   Updated: 2026/10/23 21:05:33 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
+	char	*str;
+	int		s1_len;
+	size_t	i;
 
-	if (!s)
-		return ;
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
-	while (s[i])
+	s1_len = ft_strlen(s1);
+	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	ft_bzero(str, ft_strlen(s1) + ft_strlen(s2) + 1);
+	while (s1[i] != '\0')
 	{
-		ft_putchar(s[i]);
+		str[i] = s1[i];
 		i++;
 	}
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		str[i + s1_len] = s2[i];
+		i++;
+	}
+	return (str);
 }

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strnequ.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/16 12:07:00 by lucas             #+#    #+#             */
-/*   Updated: 2026/09/16 12:10:09 by lucas            ###   ########.fr       */
+/*   Created: 2026/09/28 14:18:36 by lucas             #+#    #+#             */
+/*   Updated: 2026/10/23 21:23:27 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strnequ(char const *s1, char const *s2, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	result;
+	int	i;
 
-	if (!s1 || !s2)
-		return (0);
-	result = ft_strncmp(s1, s2, n);
-	if (result == 0)
-		return (1);
-	return (0);
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }
