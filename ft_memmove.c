@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmove.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lurodri2 <lurodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/04 11:32:55 by marvin            #+#    #+#             */
-/*   Updated: 2026/09/04 11:32:55 by marvin           ###   ########.fr       */
+/*   Created: 2026/09/04 11:32:55 by lurodri2          #+#    #+#             */
+/*   Updated: 2026/10/30 08:28:55 by lurodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char		*ptr;
 	const unsigned char	*ptr2;
-	size_t				i;
 
-	i = 0;
+	if (!dest && !src)
+		return (NULL);
 	ptr = (unsigned char *)dest;
 	ptr2 = (const unsigned char *)src;
 	if (ptr < ptr2)
 	{
-		while (i < n)
+		while (n > 0)
 		{
-			ptr[i] = ptr2[i];
-			i++;
+			*ptr++ = *ptr2++;
+			n--;
 		}
 	}
 	else
@@ -39,3 +39,14 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+/*#include <stdio.h>
+#include <string.h>
+int main (void)
+{
+	char buff[] = "abcdef";
+	char buff2[] = "abcdef";
+	ft_memmove(buff + 1, buff, 0);
+	memmove(buff + 1, buff, 0);
+	printf("ft_memmove = %s\n",buff);
+	printf("memmove = %s\n",buff2);
+}*/

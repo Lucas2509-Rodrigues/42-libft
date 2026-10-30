@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lurodri2 <lurodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/23 12:21:45 by lucas             #+#    #+#             */
-/*   Updated: 2026/10/23 14:25:49 by lucas            ###   ########.fr       */
+/*   Created: 2026/09/23 12:21:45 by lurodri2          #+#    #+#             */
+/*   Updated: 2026/10/30 09:01:06 by lurodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,17 @@ char	**ft_split(char const *s, char c)
 	}
 	return (str);
 }
+/*#include <stdio.h>
+int main (void)
+{
+	char	**s;
+	int		i;
+	
+	i = 0;
+	s = ft_split("eu vou la", ' ');
+	while (s[i])
+	{
+		printf("[%d]-[%s] \n", i, s[i]);
+		i++;
+	}
+}*/
